@@ -162,7 +162,44 @@ function ctc_add_meta_box_sermon_details() {
 
 	);
 
+	// Bible References Meta-Box
+	$meta_box_references = array (
+                // Meta Box
+                'id'            => 'ctc_sermon_references', // unique ID
+                'title'         => 'Sermon Reference',
+                'post_type'     => 'ctc_sermon',
+                'context'       => 'normal', // where the meta box appear: normal (left above standard meta boxes), advanced (left below standard boxes), side
+                'priority'      => 'high', // high, core, default or low (see this: http://www.wproots.com/ultimate-guide-to-meta-boxes-in-wordpress/)
+
+                // Fields
+                'fields' => array(
+                       // Bible References
+                        '_ctc_sermon_references' => array(
+                                'name'                          => __( 'References', 'church-theme-content'),
+                                'after_name'            => '', // (Optional), (Required), etc.
+                                'desc'                          => __('Type the Bible references used in this sermon, separated by commas.', 'church-theme-content' ),
+                                'type'                          => 'text', // text, textarea, checkbox, radio, select, number, upload, upload_textarea, url
+                                'checkbox_label'        => '', //show text after checkbox
+                                'options'                       => array(), // array of keys/values for radio or select
+                                'upload_button'         => '', // text for button that opens media frame
+                                'upload_title'          => '', // title appearing at top of media frame
+                                'upload_type'           => '', // optional type of media to filter by (image, audio, video, application/pdf)
+                                'default'                       => '', // value to pre-populate option with (before first save or on reset)
+                                'no_empty'                      => false, // if user empties value, force default to be saved instead
+                                'allow_html'            => false, // allow HTML to be used in the value (text, textarea)
+                                'attributes'            => array(), // attr => value array (e.g. set min/max for number type)
+                                'class'                         => '', // class(es) to add to input (try try ctmb-medium, ctmb-small, ctmb-tiny)
+                                'field_attributes'      => array(), // attr => value array for field container
+                                'field_class'           => '', // class(es) to add to field container
+                                'custom_sanitize'       => '', // function to do additional sanitization
+                                'custom_field'          => '', // function for custom display of field input
+                        ),
+                ),
+
+        );
+
 	// Add Meta Box
+	new CT_Meta_Box( $meta_box_references);
 	new CT_Meta_Box( $meta_box );
 
 }
